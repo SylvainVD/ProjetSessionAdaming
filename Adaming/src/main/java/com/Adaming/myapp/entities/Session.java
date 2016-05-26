@@ -1,5 +1,6 @@
 package com.Adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,16 +32,19 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 					unidirectionnelle ManytoMany avec Module (Session ---> Module)
  * */
 
+@SuppressWarnings("serial")
 @Entity
-public class Session {
+public class Session implements Serializable{
 
 	// Attibuts
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idSession;
 	@DateTimeFormat(pattern="yyyy/MM/dd")
+	@Temporal(TemporalType.DATE)
 	private Date dateDebSession;
 	@DateTimeFormat(pattern="yyyy/MM/dd")
+	@Temporal(TemporalType.DATE)
 	private Date dateFinSession;
 	private String nomSession;
 

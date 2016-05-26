@@ -19,4 +19,5 @@ public interface InterfSalleDao {
 	public Salle deleteSalle(Long idSalle);
 	public Salle getSalle(Long idSalle);
 	public List<Salle> getListSalle();
+	public List<Salle> getListSallebyMC(String MC);
 }

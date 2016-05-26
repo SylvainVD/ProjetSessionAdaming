@@ -1,5 +1,6 @@
 package com.Adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import javax.persistence.OneToMany;
  * */
 
 @Entity
-public class Salle {
+public class Salle implements Serializable{
 	
 	
 	// Attibuts
