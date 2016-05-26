@@ -1,6 +1,19 @@
 package com.Adaming.myapp.entities;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /*
  * Auteur : Sylvain VROLAND
@@ -11,24 +24,147 @@ import javax.persistence.Entity;
  * ref-uml : 1 ;
  * sprint : 1 ;
  * ref-userStories : unknown ;
- * association :  	OneToMany unidirectionnelle List<Materiel>, 
- * 					OneToMany List<Exament>, 
- * 					ManyToOne Session;
+ * association :  	OneToMany unidirectionnelle avec List<Materiel>, 
+ * 					OneToMany avec List<Exament>, 
+ * 					ManyToOne avec Session;
  * */
 
 @Entity
 public class Etudiant {
-	
-		// Attibuts
+
+	// Attibuts
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEtudiant;
-	private ;
-	
+	private String nomEtudiant;
+	private String PrenomEtudiant;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private Date dateNaissanceEtudiant;
+	private String numTelephoneEtudiant;
+	private String mailEtudiant;
+	private String specialiteEtudiant;
+	private String adresseEtudiant;
 
-		// Associations
+	// Associations
+	@OneToMany
+	// unidirectionnel
+	// @JoinColumn
+	private List<Materiel> listeMaterielDeLEtudiant = new ArrayList<Materiel>();
+	@OneToMany(mappedBy = "etudiantDeLExamen")
+	private List<Examen> listeExamenDeLEtudiant = new ArrayList<Examen>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
+	private Session sessionDeLEtudiant;
 
-		// Getters & Setters
+	// Getters & Setters
 
-		// Constructeurs
+	public Long getIdEtudiant() {
+		return idEtudiant;
+	}
 
+	public void setIdEtudiant(Long idEtudiant) {
+		this.idEtudiant = idEtudiant;
+	}
+
+	public String getNomEtudiant() {
+		return nomEtudiant;
+	}
+
+	public void setNomEtudiant(String nomEtudiant) {
+		this.nomEtudiant = nomEtudiant;
+	}
+
+	public String getPrenomEtudiant() {
+		return PrenomEtudiant;
+	}
+
+	public void setPrenomEtudiant(String prenomEtudiant) {
+		PrenomEtudiant = prenomEtudiant;
+	}
+
+	public Date getDateNaissanceEtudiant() {
+		return dateNaissanceEtudiant;
+	}
+
+	public void setDateNaissanceEtudiant(Date dateNaissanceEtudiant) {
+		this.dateNaissanceEtudiant = dateNaissanceEtudiant;
+	}
+
+	public String getNumTelephoneEtudiant() {
+		return numTelephoneEtudiant;
+	}
+
+	public void setNumTelephoneEtudiant(String numTelephoneEtudiant) {
+		this.numTelephoneEtudiant = numTelephoneEtudiant;
+	}
+
+	public String getMailEtudiant() {
+		return mailEtudiant;
+	}
+
+	public void setMailEtudiant(String mailEtudiant) {
+		this.mailEtudiant = mailEtudiant;
+	}
+
+	public String getSpecialiteEtudiant() {
+		return specialiteEtudiant;
+	}
+
+	public void setSpecialiteEtudiant(String specialiteEtudiant) {
+		this.specialiteEtudiant = specialiteEtudiant;
+	}
+
+	public String getAdresseEtudiant() {
+		return adresseEtudiant;
+	}
+
+	public void setAdresseEtudiant(String adresseEtudiant) {
+		this.adresseEtudiant = adresseEtudiant;
+	}
+
+	public List<Materiel> getListeMaterielDeLEtudiant() {
+		return listeMaterielDeLEtudiant;
+	}
+
+	public void setListeMaterielDeLEtudiant(
+			List<Materiel> listeMaterielDeLEtudiant) {
+		this.listeMaterielDeLEtudiant = listeMaterielDeLEtudiant;
+	}
+
+	public List<Examen> getListeExamenDeLEtudiant() {
+		return listeExamenDeLEtudiant;
+	}
+
+	public void setListeExamenDeLEtudiant(List<Examen> listeExamenDeLEtudiant) {
+		this.listeExamenDeLEtudiant = listeExamenDeLEtudiant;
+	}
+
+	public Session getSessionDeLEtudiant() {
+		return sessionDeLEtudiant;
+	}
+
+	public void setSessionDeLEtudiant(Session sessionDeLEtudiant) {
+		this.sessionDeLEtudiant = sessionDeLEtudiant;
+	}
+
+	// Constructeurs
+
+	public Etudiant() {
+
+	}
+
+	public Etudiant(String nomEtudiant, String prenomEtudiant,
+			Date dateNaissanceEtudiant, String numTelephoneEtudiant,
+			String mailEtudiant, String specialiteEtudiant,
+			String adresseEtudiant) {
+		super();
+		this.nomEtudiant = nomEtudiant;
+		PrenomEtudiant = prenomEtudiant;
+		this.dateNaissanceEtudiant = dateNaissanceEtudiant;
+		this.numTelephoneEtudiant = numTelephoneEtudiant;
+		this.mailEtudiant = mailEtudiant;
+		this.specialiteEtudiant = specialiteEtudiant;
+		this.adresseEtudiant = adresseEtudiant;
+	}
 
 }
