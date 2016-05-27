@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /*
  * Auteur : Sylvain VROLAND
@@ -18,7 +19,7 @@ import javax.persistence.Id;
  * ref-userStories : unknown ;
  * association :  / (uniderctionnelle : List<Session> ---> List<Module>)
  * */
-
+@XmlRootElement
 @SuppressWarnings("serial")
 @Entity
 public class Module implements Serializable{

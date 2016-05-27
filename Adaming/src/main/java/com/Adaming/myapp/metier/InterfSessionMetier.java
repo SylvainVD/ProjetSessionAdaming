@@ -2,6 +2,7 @@ package com.Adaming.myapp.metier;
 
 import java.util.List;
 
+import com.Adaming.myapp.entities.Module;
 import com.Adaming.myapp.entities.Session;
 
 /*
@@ -22,4 +23,5 @@ public interface InterfSessionMetier {
 	public List<Session> getListSession();
 	public List<Session> getListSessionbyMC(String MC);
 	public Session addModuleToSession(Long idModule, Long idSession);
+	public List<Module> getListModuleSession(Long idSession);
 }

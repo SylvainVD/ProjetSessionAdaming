@@ -42,8 +42,8 @@ public class TestSessionMetier {
 	@Test
 	public void testAddSession() {
 		try {
-			Session s = new Session(SF.parse("2014/12/01"), SF.parse("2014/02/28"), "Session hiver 2014");
-			Session s1 = new Session(SF.parse("2014/06/01"), SF.parse("2014/08/15"), "Session Ete 2014");
+			Session s = new Session(SF.parse("2013/12/01"), SF.parse("2013/02/28"), "Session hiver 2013");
+			Session s1 = new Session(SF.parse("2013/06/01"), SF.parse("2013/08/15"), "Session Ete 2013");
 			sessionMetier.addSession(s, 5L);
 			sessionMetier.addSession(s1, 4L);
 			assertNotNull(s.getIdSession());
@@ -58,14 +58,14 @@ public class TestSessionMetier {
 	public void testModifySession() {
 		Session s = sessionMetier.getSession(3L);
 		s.setNomSession("Test");
-		sessionMetier.modifySession(3L);
+		sessionMetier.modifySession(4L);
 		assertTrue(s.getNomSession()=="Test");
 	}
 
 	@Test
 	public void testDeleteSession() {
 		List<Session> tab1 = sessionMetier.getListSession();
-		sessionMetier.deleteSession(2L);
+		sessionMetier.deleteSession(9L);
 		List<Session> tab2 = sessionMetier.getListSession();
 		assertEquals(tab1.size(),tab2.size()+1);
 	}
@@ -92,7 +92,7 @@ public class TestSessionMetier {
 	public void testAddModuleToSession() {
 		sessionMetier.addModuleToSession(4L, 1L);
 		Session s = sessionMetier.getSession(1L);
-		assertTrue(s.getListeModuleDeLaSession().get(1).getNomModule()=="Java");
+		assertEquals(s.getListeModuleDeLaSession().get(1).getNomModule(), "Java");
 	}
 
 }

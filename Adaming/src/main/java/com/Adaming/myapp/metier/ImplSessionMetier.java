@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Adaming.myapp.dao.InterfSessionDao;
+import com.Adaming.myapp.entities.Module;
 import com.Adaming.myapp.entities.Session;
 
 /*
@@ -62,6 +63,12 @@ public class ImplSessionMetier implements InterfSessionMetier{
 	@Override
 	public Session addModuleToSession(Long idModule, Long idSession) {
 		return sessionDao.addModuleToSession(idModule, idSession);
+	}
+
+	@Override
+	public List<Module> getListModuleSession(Long idSession) {
+		Session s = sessionDao.getSession(idSession);
+		return s.getListeModuleDeLaSession();
 	}
 
 }

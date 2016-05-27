@@ -1,5 +1,6 @@
 package com.Adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,17 +31,19 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 					OneToMany avec List<Exament>, 
  * 					ManyToOne avec Session;
  * */
-
+ 
+@SuppressWarnings("serial")
 @Entity
-public class Etudiant {
+public class Etudiant implements Serializable {
 
 	// Attibuts
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEtudiant;
 	private String nomEtudiant;
-	private String PrenomEtudiant;
+	private String prenomEtudiant;
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissanceEtudiant;
 	private String numTelephoneEtudiant;
 	private String mailEtudiant;
@@ -50,7 +55,7 @@ public class Etudiant {
 	// unidirectionnel
 	// @JoinColumn
 	private List<Materiel> listeMaterielDeLEtudiant = new ArrayList<Materiel>();
-	@OneToMany(mappedBy = "etudiantDeLExamen")
+	@OneToMany(mappedBy = "etudiantDeLExamen",fetch=FetchType.EAGER)
 	private List<Examen> listeExamenDeLEtudiant = new ArrayList<Examen>();
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
@@ -75,11 +80,11 @@ public class Etudiant {
 	}
 
 	public String getPrenomEtudiant() {
-		return PrenomEtudiant;
+		return prenomEtudiant;
 	}
 
 	public void setPrenomEtudiant(String prenomEtudiant) {
-		PrenomEtudiant = prenomEtudiant;
+		this.prenomEtudiant = prenomEtudiant;
 	}
 
 	public Date getDateNaissanceEtudiant() {
@@ -159,7 +164,7 @@ public class Etudiant {
 			String adresseEtudiant) {
 		super();
 		this.nomEtudiant = nomEtudiant;
-		PrenomEtudiant = prenomEtudiant;
+		this.prenomEtudiant = prenomEtudiant;
 		this.dateNaissanceEtudiant = dateNaissanceEtudiant;
 		this.numTelephoneEtudiant = numTelephoneEtudiant;
 		this.mailEtudiant = mailEtudiant;

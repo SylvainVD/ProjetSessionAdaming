@@ -1,5 +1,6 @@
 package com.Adaming.myapp.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,9 +26,10 @@ import org.springframework.format.annotation.DateTimeFormat;
  * ref-userStories : unknown ;
  * association : ManyToOne avec Etudiant;
  * */
-
+ 
+@SuppressWarnings("serial")
 @Entity
-public class Examen {
+public class Examen implements Serializable {
 	
 	// Attibuts
 	
@@ -34,6 +38,7 @@ public class Examen {
 	private Long idExamen;
 	private String intituleExamen;
 	@DateTimeFormat(pattern="yyyy/MM/dd")
+	@Temporal(TemporalType.DATE)
 	private Date dateExamen;
 	private Double noteExamen;
 
@@ -90,13 +95,11 @@ public class Examen {
 		
 	}
 	
-	public Examen(String intituleExamen, Date dateExamen, Double noteExamen,
-			Etudiant etudiantDeLExamen) {
+	public Examen(String intituleExamen, Date dateExamen, Double noteExamen) {
 		super();
 		this.intituleExamen = intituleExamen;
 		this.dateExamen = dateExamen;
 		this.noteExamen = noteExamen;
-		this.etudiantDeLExamen = etudiantDeLExamen;
 	}
 
 }

@@ -17,6 +17,18 @@
 		<context:component-scan base-package="com.creperie.myapp.metier"></context:component-scan> -->
 	<!-- ************************************************************************************************ -->
 	<!-- ************************************************************************************************ -->
+		<beans:bean id="daoEtudiant" class="com.Adaming.myapp.dao.ImplEtudiantDao"></beans:bean>
+	<beans:bean id="metierEtudiant" class="com.Adaming.myapp.metier.ImplEtudiantMetier">
+		<beans:property name="dao" ref="daoEtudiant"></beans:property>
+	</beans:bean>
+	<beans:bean id="daoExamen" class="com.Adaming.myapp.dao.ImplExamenDao"></beans:bean>
+	<beans:bean id="metierExamen" class="com.Adaming.myapp.metier.ImplExamenMetier">
+		<beans:property name="dao" ref="daoExamen"></beans:property>
+	</beans:bean>
+	<beans:bean id="daoMateriel" class="com.Adaming.myapp.dao.ImplMaterielDao"></beans:bean>
+	<beans:bean id="metierMateriel" class="com.Adaming.myapp.metier.ImplMaterielMetier">
+		<beans:property name="dao" ref="daoMateriel"></beans:property>
+	</beans:bean>
 	<beans:bean id="moduleDao" class="com.Adaming.myapp.dao.ImplModuleDao"></beans:bean>
 	<beans:bean id="moduleMetier" class="com.Adaming.myapp.metier.ImplModuleMetier">
 		<beans:property name="moduleDao" ref="moduleDao"></beans:property>

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,7 +33,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 					ManyToOne avec Salle,
  * 					unidirectionnelle ManytoMany avec Module (Session ---> Module)
  * */
-
+@XmlRootElement
 @SuppressWarnings("serial")
 @Entity
 public class Session implements Serializable{
@@ -54,7 +56,7 @@ public class Session implements Serializable{
 	@ManyToOne
 	@JoinColumn
 	private Salle salleDeLaSession;
-	@ManyToMany //unidirectionnel
+	@ManyToMany(fetch=FetchType.EAGER) //unidirectionnel
 	//@JoinTable
 	private List<Module> listeModuleDeLaSession = new ArrayList<Module>();
 	
