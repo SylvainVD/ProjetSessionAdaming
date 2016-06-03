@@ -33,12 +33,11 @@ public class ImplSalleDao implements InterfSalleDao{
 	}
 
 	@Override
-	public Salle modifySalle(Long idSalle) {
-		Log.info("Debut modify salle : id salle : "+idSalle);
-		Salle s = em.find(Salle.class, idSalle);
-		em.merge(s);
-		Log.info("Fin modify salle : id salle : "+s.getIdSalle());
-		return s;
+	public Salle modifySalle(Salle sal) {
+		Log.info("Debut modify salle : id salle : "+sal.getIdSalle());
+		em.merge(sal);
+		Log.info("Fin modify salle : id salle : "+sal.getIdSalle());
+		return sal;
 	}
 
 	@Override

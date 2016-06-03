@@ -39,9 +39,8 @@ public class ImplSessionDao implements InterfSessionDao {
 	}
 
 	@Override
-	public Session modifySession(Long idSession) {
-		Log.info("Debut modify session id : "+idSession);
-		Session s = em.find(Session.class, idSession);
+	public Session modifySession(Session s) {
+		Log.info("Debut modify session id : "+s.getIdSession());
 		em.merge(s);
 		Log.info("Fin modify session : "+s.getNomSession());
 		return s;
@@ -86,6 +85,7 @@ public class ImplSessionDao implements InterfSessionDao {
 	public Session addModuleToSession(Long idModule, Long idSession) {
 		Log.info("Debut addModuleToSession : idModule : "+idModule +" idSession : "+idSession);
 		Module m = em.find(Module.class, idModule);
+		Log.info("nom module a ajouter : "+m.getNomModule());
 		Session s = em.find(Session.class, idSession);
 		s.getListeModuleDeLaSession().add(m);
 		Log.info("Fin addModuleToSession : module ajouté");

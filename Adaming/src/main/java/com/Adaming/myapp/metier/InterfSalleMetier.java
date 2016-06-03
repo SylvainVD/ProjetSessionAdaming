@@ -16,7 +16,7 @@ import com.Adaming.myapp.entities.Salle;
  * */
 public interface InterfSalleMetier {
 	public Salle addSalle(Salle s);
-	public Salle modifySalle(Long idSalle);
+	public Salle modifySalle(Salle s);
 	public Salle deleteSalle(Long idSalle);
 	public Salle getSalle(Long idSalle);
 	public List<Salle> getListSalle();

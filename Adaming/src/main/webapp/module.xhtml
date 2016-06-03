@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Modules</title>
+</h:head>
+<h:body>
+	<p:tabMenu activeIndex="#{param.i}">
+		<p:menuitem value="Salles" outcome="salle" icon="ui-icon-star">
+			<f:param name="i" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Modules" outcome="module" icon="ui-icon-search">
+			<f:param name="i" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Sessions" outcome="session" icon="ui-icon-document">
+			<f:param name="i" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+	<div>
+		<h:form id="form">
+			<p:dataTable var="modlist" value="#{moduleBean.getListModule()}"
+				draggableColumns="true" id="table-mod">
+				<f:facet name="header">
+            Listes des modules dispensés par INTI
+        </f:facet>
+				<p:column headerText="Identifiant">
+					<h:outputText value="#{modlist.idModule}" />
+				</p:column>
+
+				<p:column headerText="Nom">
+					<h:outputText value="#{modlist.nomModule}" />
+				</p:column>
+
+				<p:column headerText="Durée">
+					<h:outputText value="#{modlist.dureeModule}" />
+				</p:column>
+
+				<p:column headerText="Description">
+					<h:outputText value="#{modlist.descriptionModule}" />
+				</p:column>
+				<p:column headerText="Suppression">
+					<p:commandButton value="Supprimer"
+						actionListener="#{moduleBean.deleteModule(modlist.idModule)}"
+						update="form:table-mod" ajax="true" process="@this" />
+				</p:column>
+			</p:dataTable>
+			<p:accordionPanel style="width:600px;">
+				<p:tab title="Ajout d'un module">
+					<table>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Nom du module:" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="nomModule" value="#{moduleBean.module.nomModule}"
+									required="True"
+									requiredMessage="Merci d'indiquer le nom du module" /></td>
+						</tr>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Durée :" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="numSalle" value="#{moduleBean.module.dureeModule}"
+									required="True"
+									requiredMessage="Merci de renseigner la durée de la session" /></td>
+						</tr>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Description :" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="descriptionSalle"
+									value="#{moduleBean.module.descriptionModule}" required="True"
+									requiredMessage="Merci de renseigner la capacité de la salle" /></td>
+						</tr>
+
+						<tr>
+							<td style="width: 300px; padding-top: 15px;">
+								<div align="center">
+									<p:commandButton value="Ajouter"
+										actionListener="#{moduleBean.addModule(moduleBean.module.nomModule,moduleBean.module.dureeModule,moduleBean.module.descriptionModule)}"
+										update="form:table-mod" ajax="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+					<p:messages></p:messages>
+				</p:tab>
+			</p:accordionPanel>
+		</h:form>
+	</div>
+	<div>
+		<p:accordionPanel>
+			<p:tab title="Recherche d'un module par son id">
+				<h:form id="recherche">
+					<h:outputText value="Identifiant module" />
+					<p:inputText value="#{moduleBean.idModule}" required="true"
+						requiredMessage="Merci de renseigner l'identifiant du module"></p:inputText>
+					<p:commandButton value="Rechercher"
+						actionListener="#{moduleBean.getModule(moduleBean.idModule)}"
+						action="detailmodule?faces-redirect=true" ajax="true" />
+					<p:messages></p:messages>
+				</h:form>
+			</p:tab>
+		</p:accordionPanel>
+	</div>
+</h:body>
+</html>

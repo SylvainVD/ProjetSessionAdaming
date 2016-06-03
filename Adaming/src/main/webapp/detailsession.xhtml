@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Détails session</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel>Données de la session cherchée</h:outputLabel>
+		<br></br>
+		<h:outputText value="Identifiant de la session : " />
+		<h:outputText value="#{sessionBean.sessionR.idSession}" />
+		<br></br>
+		<h:outputText value="Date de début de la session : " />
+		<p:calendar  id="datedebsession"
+			value="#{sessionBean.sessionR.dateDebSession}" />
+		<br></br>
+		<h:outputText value="Date de fin de la session : " />
+		<p:calendar  id="datefinsession" value="#{sessionBean.sessionR.dateFinSession}" />
+		<br></br>
+		<h:outputText value="Nom de la session : " />
+		<h:inputText id="nomsession"
+			value="#{sessionBean.sessionR.nomSession}" />
+			<h:messages></h:messages>
+		<br></br>
+		<br></br>
+		<p:commandButton value="Modifier"
+			actionListener="#{sessionBean.modifySession(sessionBean.sessionR.idSession,sessionBean.sessionR.dateDebSession,
+	sessionBean.sessionR.dateFinSession,sessionBean.sessionR.nomSession)}"
+			ajax="true" />
+		<p:commandButton value="Supprimer"
+			actionListener="#{sessionBean.deleteSession(sessionBean.sessionR.idSession)}"
+			action="deletesession?faces-redirect=true" ajax="true" />
+		<br></br>
+	</h:form>
+	<h:link value="Retour vers la page des sessions" outcome="session?i=2"></h:link>
+</h:body>
+</html>

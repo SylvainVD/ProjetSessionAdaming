@@ -49,7 +49,7 @@ public class TestSalleMetier {
 	public void testModifySalle() {
 		Salle s = salleMetier.getSalle(1L);
 		s.setNumSalle(2000);
-		salleMetier.modifySalle(1L);
+		salleMetier.modifySalle(s);
 		assertEquals(s.getNumSalle(), 2000);
 	}
 

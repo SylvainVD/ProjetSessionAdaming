@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Salles</title>
+</h:head>
+<h:body>
+	<p:tabMenu activeIndex="#{param.i}">
+		<p:menuitem value="Salles" outcome="salle" icon="ui-icon-star">
+			<f:param name="i" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Modules" outcome="module" icon="ui-icon-search">
+			<f:param name="i" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Sessions" outcome="session" icon="ui-icon-document">
+			<f:param name="i" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+	<div>
+		<h:form id="form">
+			<p:dataTable id="listsalle" var="sallelist"
+				value="#{salleBean.getListSalle()}">
+				<f:facet name="header"> Liste des salles de formation </f:facet>
+
+				<p:column headerText="Identifiant">
+					<h:outputText value="#{sallelist.idSalle}" />
+				</p:column>
+
+				<p:column headerText="Adresse de la salle">
+					<h:outputText value="#{sallelist.adresseSalle}" />
+				</p:column>
+
+				<p:column headerText="Numéro de salle">
+					<h:outputText value="#{sallelist.numSalle}" />
+				</p:column>
+
+				<p:column headerText="Capacité">
+					<h:outputText value="#{sallelist.capaciteSalle}" />
+				</p:column>
+			</p:dataTable>
+			<br></br>
+			<p:accordionPanel style="width:600px;">
+				<p:tab title="Ajout d'une salle">
+					<table>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Adresse de la salle:" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="adresseSalle" value="#{salleBean.salle.adresseSalle}"
+									required="True"
+									requiredMessage="Merci d'indiquer l'adresse de la salle" /></td>
+						</tr>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Numéro :" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="numSalle" value="#{salleBean.salle.numSalle}"
+									required="True"
+									requiredMessage="Merci de renseigner le numéro de la salle" /></td>
+						</tr>
+						<tr>
+							<td style="width: 300px; padding-bottom: 10px;"><h:outputText
+									value="Capacité :" /></td>
+							<td style="width: 300px; padding-bottom: 10px;"><p:inputText
+									id="capaciteSalle" value="#{salleBean.salle.capaciteSalle}"
+									required="True"
+									requiredMessage="Merci de renseigner la capacité de la salle" /></td>
+						</tr>
+
+						<tr>
+							<td style="width: 300px; padding-top: 15px;">
+								<div align="center">
+									<p:commandButton value="Ajouter"
+										actionListener="#{salleBean.addSalle(salleBean.salle.adresseSalle,salleBean.salle.numSalle,salleBean.salle.capaciteSalle)}"
+										update="form:listsalle" ajax="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</p:tab>
+				<p:messages></p:messages>
+			</p:accordionPanel>
+
+		</h:form>
+	</div>
+	<br></br>
+	<div>
+		<p:accordionPanel>
+			<p:tab title="Recherche d'une salle par son id">
+				<h:form id="recherche">
+					<h:outputText value="Identifiant Salle" />
+					<p:inputText value="#{salleBean.idSalle}" required="True"
+						requiredMessage="Merci de renseigner l'identifiant de la salle"></p:inputText>
+					<p:commandButton value="Afficher"
+						actionListener="#{salleBean.get1Salle(salleBean.idSalle)}"
+						action="detailsalle?faces-redirect=true" ajax="true" />
+					<p:messages></p:messages>
+				</h:form>
+			</p:tab>
+		</p:accordionPanel>
+	</div>
+	<div>
+		<p:accordionPanel>
+			<p:tab title="Recherche d'une salle par mot clé sur son adresse">
+				<h:form id="recherche">
+					<h:outputText value="Adresse de la salle" />
+					<p:inputText value="#{salleBean.mc}" required="True"
+						requiredMessage="Merci de renseigner l'adresse pour la recherche de la salle"></p:inputText>
+					<p:commandButton value="Rechercher"
+						actionListener="#{salleBean.getListSallebyMC(salleBean.mc)}"
+						action="adressesalle?faces-redirect=true" ajax="true" />
+					<p:messages></p:messages>
+				</h:form>
+			</p:tab>
+		</p:accordionPanel>
+		<p:accordionPanel>
+			<p:tab title="Suppression d'une salle par son id">
+				<h:form id="recherche">
+					<h:outputText value="Identifiant " />
+					<p:inputText value="#{salleBean.idSalle}" required="True"
+						requiredMessage="Merci de renseigner l'identifiant pour la suppression de la salle"></p:inputText>
+					<p:commandButton value="Supprimer"
+						actionListener="#{salleBean.deleteSalle(salleBean.idSalle)}"
+						action="deletesalle?faces-redirect=true" update="form:listsalle"
+						ajax="true" />
+					<p:messages></p:messages>
+				</h:form>
+			</p:tab>
+		</p:accordionPanel>
+	</div>
+</h:body>
+</html>

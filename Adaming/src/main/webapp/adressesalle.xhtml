@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Détails recherche salle par adresse</title>
+</h:head>
+<h:body>
+<h:form>
+  <p:dataTable var="sallead" value="#{salleBean.getListSallebyMC(salleBean.mc)}" style="margin-bottom:40px">
+        <f:facet name="header">
+            Liste des salles recherchées
+        </f:facet>
+        <p:column headerText="Id" sortBy="#{sallead.idSalle}">
+            <h:outputText value="#{sallead.idSalle}" />
+        </p:column>
+ 
+        <p:column headerText="Adresse" sortBy="#{sallead.adresseSalle}">
+            <h:outputText value="#{sallead.adresseSalle}" />
+        </p:column>
+ 
+        <p:column headerText="Numéro" sortBy="#{sallead.numSalle}">
+            <h:outputText value="#{sallead.numSalle}" />
+        </p:column>
+ 
+        <p:column headerText="Capacité" sortBy="#{sallead.capaciteSalle}">
+            <h:outputText value="#{sallead.capaciteSalle}" />
+        </p:column>
+    </p:dataTable>
+</h:form>
+	<h:link value="Retour vers la page des salles" outcome="salle"></h:link>
+</h:body>
+</html>

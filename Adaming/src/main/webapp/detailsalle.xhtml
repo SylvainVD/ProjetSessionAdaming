@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Détails salle</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel>Données de la salle cherchée</h:outputLabel>
+		<br></br>
+		<h:outputText value="Identifiant de la salle : " />
+		<h:outputText value="#{salleBean.salleR.idSalle}" />
+		<br></br>
+		<h:outputText value="Adresse de la salle : " />
+		<h:inputText id="adresseSalle"
+			value="#{salleBean.salleR.adresseSalle}" />
+		<br></br>
+		<h:outputText value="Numéro : " />
+		<h:inputText id="numSalle" value="#{salleBean.salleR.numSalle}" />
+		<br></br>
+		<h:outputText value="Capacité : " />
+		<h:inputText id="capaciteSalle"
+			value="#{salleBean.salleR.capaciteSalle}" />
+		<br></br>
+		<br></br>
+		<p:commandButton value="Modifier"
+			actionListener="#{salleBean.modifySalle(salleBean.salleR.idSalle,salleBean.salleR.adresseSalle,
+	salleBean.salleR.numSalle,salleBean.salleR.capaciteSalle)}"
+			ajax="true" />
+		<p:commandButton value="Supprimer"
+			actionListener="#{salleBean.deleteSalle(salleBean.salleR.idSalle)}"
+			action="deletesalle?faces-redirect=true" ajax="true" />
+		<br></br>
+	</h:form>
+	<h:link value="Retour vers la page des salles" outcome="salle"></h:link>
+</h:body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Suppression salle</title>
+</h:head>
+<h:body>
+	<h:outputLabel>Données de la salle supprimée</h:outputLabel><br></br>
+	<h:outputText value="Adresse de la salle : " />
+	<h:outputText id="adresseSalle" value="#{salleBean.salledel.adresseSalle}" /><br></br>
+	<h:outputText value="Numéro : " />
+	<h:outputText id="numSalle" value="#{salleBean.salledel.numSalle}" /><br></br>
+	<h:outputText value="Capacité : " />
+	<h:outputText id="capaciteSalle" value="#{salleBean.salledel.capaciteSalle}" />
+	<br></br>
+	<h:link value="Retour vers la page des salles" outcome="salle"></h:link>
+</h:body>
+</html>

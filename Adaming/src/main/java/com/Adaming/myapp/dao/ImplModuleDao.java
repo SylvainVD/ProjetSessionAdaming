@@ -33,9 +33,8 @@ public class ImplModuleDao implements InterfModuleDao{
 	}
 
 	@Override
-	public Module modifyModule(Long idModule) {
-		Log.info("Debut modify module : id : "+idModule);
-		Module m = em.find(Module.class, idModule);
+	public Module modifyModule(Module m) {
+		Log.info("Debut modify module : id : "+m.getIdModule());
 		em.merge(m);
 		Log.info("Fin modify module : id : "+m);
 		return m;

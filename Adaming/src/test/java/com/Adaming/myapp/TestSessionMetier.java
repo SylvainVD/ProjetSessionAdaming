@@ -39,7 +39,7 @@ public class TestSessionMetier {
 		context.close();
 	}
 
-	@Test
+	 @Test
 	public void testAddSession() {
 		try {
 			Session s = new Session(SF.parse("2013/12/01"), SF.parse("2013/02/28"), "Session hiver 2013");
@@ -58,7 +58,7 @@ public class TestSessionMetier {
 	public void testModifySession() {
 		Session s = sessionMetier.getSession(3L);
 		s.setNomSession("Test");
-		sessionMetier.modifySession(4L);
+		sessionMetier.modifySession(s);
 		assertTrue(s.getNomSession()=="Test");
 	}
 
@@ -86,7 +86,7 @@ public class TestSessionMetier {
 	public void testGetListSessionbyMC() {
 		List<Session> tab = sessionMetier.getListSessionbyMC("Session");
 		assertTrue(tab.size()>0);
-	}
+	} 
 
 	@Test
 	public void testAddModuleToSession() {

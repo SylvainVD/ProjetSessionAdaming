@@ -15,7 +15,7 @@ import com.Adaming.myapp.entities.Salle;
  * */
 public interface InterfSalleDao {
 	public Salle addSalle(Salle s);
-	public Salle modifySalle(Long idSalle);
+	public Salle modifySalle(Salle salle);
 	public Salle deleteSalle(Long idSalle);
 	public Salle getSalle(Long idSalle);
 	public List<Salle> getListSalle();

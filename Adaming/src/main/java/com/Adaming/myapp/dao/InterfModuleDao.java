@@ -15,7 +15,7 @@ import com.Adaming.myapp.entities.Module;
  * */
 public interface InterfModuleDao {
 	public Module addModule(Module m);
-	public Module modifyModule(Long idModule);
+	public Module modifyModule(Module mod);
 	public Module deleteModule(Long idModule);
 	public Module getModule(Long idModule);
 	public List<Module> getListModule();

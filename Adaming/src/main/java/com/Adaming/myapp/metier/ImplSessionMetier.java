@@ -36,8 +36,8 @@ public class ImplSessionMetier implements InterfSessionMetier{
 	}
 
 	@Override
-	public Session modifySession(Long idSession) {
-		return sessionDao.modifySession(idSession);
+	public Session modifySession(Session s) {
+		return sessionDao.modifySession(s);
 	}
 
 	@Override

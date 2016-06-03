@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Suppression session</title>
+</h:head>
+<h:body>
+	<h:outputLabel>Données de la session supprimée</h:outputLabel><br></br>
+	<h:outputText value="Identifiant de la session : " />
+		<h:outputText value="#{sessionBean.sessiondel.idSession}" />
+		<br></br>
+		<h:outputText value="Date de début de la session : " />
+		<h:outputText id="datedebsession"
+			value="#{sessionBean.sessiondel.dateDebSession}" />
+		<br></br>
+		<h:outputText value="Date de fin de la session : " />
+		<h:outputText id="datefinsession" value="#{sessionBean.sessiondel.dateFinSession}" />
+		<br></br>
+		<h:outputText value="Nom de la session : " />
+		<h:outputText id="nomsession"
+			value="#{sessionBean.sessiondel.nomSession}" />
+		<br></br>
+	<br></br>
+	<h:link value="Retour vers la page des sessions" outcome="session?i=2"></h:link>
+</h:body>
+</html>

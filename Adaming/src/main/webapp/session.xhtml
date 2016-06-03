@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Sessions</title>
+</h:head>
+<h:body>
+	<p:tabMenu activeIndex="#{param.i}">
+		<p:menuitem value="Salles" outcome="salle" icon="ui-icon-star">
+			<f:param name="i" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Modules" outcome="module" icon="ui-icon-search">
+			<f:param name="i" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Sessions" outcome="session" icon="ui-icon-document">
+			<f:param name="i" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+	<div>
+		<h:form id="form">
+			<p:dataTable id="table-session" var="sessionlist"
+				value="#{sessionBean.getList()}">
+				<f:facet name="header">
+        Liste des sessions
+ 				</f:facet>
+
+				<p:column headerText="Identifiant">
+					<h:outputText value="#{sessionlist.idSession}" />
+				</p:column>
+
+				<p:column headerText="Nom session">
+					<h:outputText value="#{sessionlist.nomSession}" />
+				</p:column>
+				<p:column headerText="Date de début">
+					<h:outputText value="#{sessionlist.dateDebSession}" />
+				</p:column>
+
+				<p:column headerText="Date de fin">
+					<h:outputText value="#{sessionlist.dateFinSession}" />
+				</p:column>
+
+				<p:column headerText="Afficher les modules">
+					<p:commandButton value="afficher modules"
+						actionListener="#{sessionBean.getSession(sessionlist.idSession)}"
+						ajax="true" action="moduledesession?faces-redirect=true"
+						process="@this"></p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			<p:accordionPanel style="width:600px;">
+				<p:tab title="Formulaire d'ajout de session">
+					<table>
+						<tr>
+							<td><h:outputText value="Nom de la session" /></td>
+							<td><h:inputText value="#{sessionBean.session.nomSession}"
+									required="true"
+									requiredMessage="Merci de donner un nom à la session" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Date de début" /></td>
+							<td><p:calendar
+									value="#{sessionBean.session.dateDebSession}" required="true"
+									requiredMessage="Merci de renseigner une date de début"></p:calendar></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Date de fin" /></td>
+							<td><p:calendar
+									value="#{sessionBean.session.dateFinSession}" required="true"
+									requiredMessage="Merci de renseigner une date de fin"></p:calendar>
+							</td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Identifiant de la salle :"
+									for="idsa" /> <p:selectOneMenu id="idsa"
+									value="#{sessionBean.idsalle}" effect="fold" editable="true">
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItems value="#{sessionBean.getListidSalle()}" />
+								</p:selectOneMenu></td>
+						</tr>
+						<tr>
+							<td><p:commandButton value="Ajouter"
+									actionListener="#{sessionBean.addSession(sessionBean.session.dateDebSession,
+				sessionBean.session.dateFinSession,sessionBean.session.nomSession,sessionBean.idsalle)}"
+									ajax="true" update="form:table-session"></p:commandButton></td>
+						</tr>
+					</table>
+				</p:tab>
+			</p:accordionPanel>
+		</h:form>
+	</div>
+	<div>
+		<p:accordionPanel>
+			<p:tab title="Recherche d'une session par son id">
+				<h:form id="recherche">
+					<h:outputText value="Identifiant session" />
+					<p:inputText value="#{sessionBean.idsession}" required="true"
+						requiredMessage="Merci de renseigner l'identifiant de la session"></p:inputText>
+					<p:commandButton value="Rechercher"
+						actionListener="#{sessionBean.getSession(sessionBean.idsession)}"
+						action="detailsession?faces-redirect=true" ajax="true" />
+					<p:messages></p:messages>
+				</h:form>
+			</p:tab>
+		</p:accordionPanel>
+	</div>
+</h:body>
+</html>

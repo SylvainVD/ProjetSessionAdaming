@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Detail module</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel>Données du module cherché</h:outputLabel>
+		<br></br>
+		<h:outputText value="Identifiant du module : " />
+		<h:outputText id="identifiantModule"
+			value="#{moduleBean.moduleR.idModule}" />
+		<br></br>
+		<h:outputText value="Nom : " />
+		<p:inputText id="nomModule" value="#{moduleBean.moduleR.nomModule}" />
+		<br></br>
+		<h:outputText value="Durée : " />
+		<p:inputText id="dureeModule"
+			value="#{moduleBean.moduleR.dureeModule}" />
+		<br></br>
+		<h:outputText value="Description : " />
+		<p:inputText id="descriptionModule"
+			value="#{moduleBean.moduleR.descriptionModule}" />
+		<br></br>
+		<p:commandButton value="Modifier" actionListener="#{moduleBean.modifyModule(moduleBean.moduleR.idModule,moduleBean.moduleR.nomModule,moduleBean.moduleR.dureeModule,moduleBean.moduleR.descriptionModule)}"></p:commandButton>
+	</h:form>
+	<h:link value="Retour vers la page des modules" outcome="module"></h:link>
+</h:body>
+</html>

@@ -34,8 +34,8 @@ public class ImplSalleMetier implements InterfSalleMetier {
 	}
 
 	@Override
-	public Salle modifySalle(Long idSalle) {
-		return salleDao.modifySalle(idSalle);
+	public Salle modifySalle(Salle s) {
+		return salleDao.modifySalle(s);
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class TestModuleMetier {
 	public void testModifyModule() {
 		Module m = moduleMetier.getModule(2L);
 		m.setDureeModule(12);
-		moduleMetier.modifyModule(2L);
+		moduleMetier.modifyModule(m);
 		assertTrue(m.getDureeModule()==12);
 	}
 

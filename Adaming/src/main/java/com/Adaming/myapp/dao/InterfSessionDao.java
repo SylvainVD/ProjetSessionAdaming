@@ -15,7 +15,7 @@ import com.Adaming.myapp.entities.Session;
  * */
 public interface InterfSessionDao {
 	public Session addSession(Session s, Long idSalle);
-	public Session modifySession(Long idSession);
+	public Session modifySession(Session s);
 	public Session deleteSession(Long idSession);
 	public Session getSession(Long idSession);
 	public List<Session> getListSession();

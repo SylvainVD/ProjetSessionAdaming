@@ -33,8 +33,8 @@ public class ImplModuleMetier implements InterfModuleMetier{
 	}
 
 	@Override
-	public Module modifyModule(Long idModule) {
-		return moduleDao.modifyModule(idModule);
+	public Module modifyModule(Module mod) {
+		return moduleDao.modifyModule(mod);
 	}
 
 	@Override

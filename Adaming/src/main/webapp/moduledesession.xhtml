@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Liste des modules de la session</title>
+</h:head>
+<h:body>
+	<h:outputLabel>Modules de la session</h:outputLabel>
+	<br></br>
+	<p:dataTable var="module"
+		value="#{sessionBean.getModulesSession(sessionBean.sessionR.idSession)}" emptyMessage="Aucun module n'a été enregistré pour cette session">
+		<p:column headerText="Identifiant">
+			<h:outputText value="#{module.idModule}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{module.nomModule}" />
+		</p:column>
+
+		<p:column headerText="Durée">
+			<h:outputText value="#{module.dureeModule}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{module.descriptionModule}" />
+		</p:column>
+	</p:dataTable>
+	<br></br>
+	<br></br>
+	<h:link value="Retour vers la page des sessions" outcome="session?i=2"></h:link>
+</h:body>
+</html>
